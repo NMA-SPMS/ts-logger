@@ -44,7 +44,7 @@ Finally the Http Request Log has a couple of extra properties:
 | path      | string | The path of the endpoint (eg: /v4/friends) |
 | httpVersion      | string | The http version |
 | httpMethod      | string | The http method (eg: GET, POST...) |
-| hostanme      | string | The Host field in the header |
+| hostname      | string | The Host field in the header |
 | ip      | string | The remote address |
 
 
@@ -85,8 +85,6 @@ Typescript - A superset of javascript
 ## Versioning
 
 We use SemVer for versioning. For the versions available, see the tags on this repository.
-
-## Authors
 
 ## License
 
