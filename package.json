@@ -1,5 +1,5 @@
 {
-  "name": "ts-logger",
+  "name": "@spms-apps/ts-logger",
   "version": "0.0.1",
   "description": "A logger built with winston for creating logstash logs out of the box",
   "main": "lib/index.js",
@@ -14,6 +14,10 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NMA-SPMS/ts-logger.git"
   },
   "keywords": [
     "logger",

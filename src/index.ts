@@ -1,6 +1,7 @@
 import * as Express from 'express';
 import { BasicLog, HttpRequestLog, MethodLog } from './classes';
-
+import { LogLevels, LogTypes } from './enums/logger';
+import { parseFilePath } from './utils/file';
 import logger from './winston';
 
 export const httpReqLog = (level: string, filePath: string, req: Express.Request, tags?: string[]) => {
@@ -17,3 +18,5 @@ export const methodLog = (level: string, filePath: string, message: string, meth
   const customLog: MethodLog = new MethodLog(level, filePath, message, method, tags);
   logger[level](Object.assign({}, customLog.getLog(), { toString: customLog.toString }));
 };
+
+export { LogLevels, LogTypes, parseFilePath };
