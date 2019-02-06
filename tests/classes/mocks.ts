@@ -1,6 +1,6 @@
 import * as Express from 'express';
-import { LogLevels, LogTypes } from '../../enums/logger';
-import { IGenericLog, IHttpRequestLog, IMethodLog } from '../../interfaces/logger';
+import { LogLevels, LogTypes } from '../../src/enums/logger';
+import { IGenericLog, IHttpRequestLog, IMethodLog } from '../../src/interfaces/logger';
 // Basic log mocks
 
 export const basicOutLog: IGenericLog = {
@@ -34,6 +34,7 @@ export const methodOutLog: IMethodLog = {
 
 export const methodOutLogString: string = `type:[method] timestamp:[undefined] env:[${
   process.env.NODE_ENV ? process.env.NODE_ENV : 'dev'
+// tslint:disable-next-line:max-line-length
 }] level:[info] file:[src/controllers/new-api/pathology.js] tags:[rel] method:[teste] <[message]>Teste message<[message]>`;
 
 export const methodOutLogStringWithoutTags: string = `type:[method] timestamp:[undefined] env:[${
@@ -60,10 +61,12 @@ export const httpReqOutLog: IHttpRequestLog = {
 
 export const httpReqOutLogString: string = `type:[httpReq] timestamp:[undefined] env:[${
   process.env.NODE_ENV ? process.env.NODE_ENV : 'dev'
+// tslint:disable-next-line:max-line-length
 }] level:[info] file:[src/controllers/new-api/pathology.js] tags:[rel] method:[GET] version:[1.1] ip:[::1] hostname:[localhost] path:[/v2/pathologies]`;
 
 export const httpReqOutLogStringWithoutTags: string = `type:[httpReq] timestamp:[undefined] env:[${
   process.env.NODE_ENV ? process.env.NODE_ENV : 'dev'
+// tslint:disable-next-line:max-line-length
 }] level:[info] file:[src/controllers/new-api/pathology.js] method:[GET] version:[1.1] ip:[::1] hostname:[localhost] path:[/v2/pathologies]`;
 
 export const requestMock: any = {

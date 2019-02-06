@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest ./src/tests --coverage  --config ./jest.config.json",
-    "build": "rm -rf ./lib && tsc",
+    "test": "jest ./tests --coverage  --config ./jest.config.json",
+    "build": "rm -rf ./lib && npm run lint && npm run test && tsc -p ./tsconfig.dist.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",

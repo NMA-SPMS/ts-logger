@@ -1,5 +1,5 @@
-import { BasicLog, HttpRequestLog, MethodLog } from '../../classes';
-import { LogLevels } from '../../enums/logger';
+import { BasicLog, HttpRequestLog, MethodLog } from '../../src/classes';
+import { LogLevels } from '../../src/enums/logger';
 import {
   basicOutLog,
   basicOutLogString,
@@ -61,6 +61,7 @@ describe('HttpReqLog class tests', () => {
   let httpReqLog: HttpRequestLog;
   beforeAll(() => {
     httpReqLog = new HttpRequestLog(LogLevels.info, 'src/controllers/new-api/pathology.js', requestMock, ['rel']);
+    // tslint:disable-next-line:no-console
     console.dir(httpReqLog);
   });
 
