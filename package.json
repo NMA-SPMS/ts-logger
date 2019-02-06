@@ -5,15 +5,16 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest ./src/tests --coverage  --config ./jest.config.json",
-    "build": "rm -rf ./lib && tsc",
+    "test": "jest ./tests --coverage  --config ./jest.config.json",
+    "build": "rm -rf ./lib && npm run lint && npm run test && tsc -p ./tsconfig.dist.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "coverall": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@types/winston": "^2.4.4",
     "commitizen": "^3.0.5",
     "commitplease": "^3.2.0",
+    "coveralls": "^3.0.2",
     "jest": "^23.6.0",
     "prettier": "^1.16.1",
     "ts-jest": "^23.10.5",

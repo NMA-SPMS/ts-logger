@@ -1,4 +1,4 @@
-import { parseFilePath } from '../../utils/file';
+import { parseFilePath } from '../../src/utils/file';
 
 describe('parseFilePath method tests', () => {
   it('must return a parsed file path', () => {
