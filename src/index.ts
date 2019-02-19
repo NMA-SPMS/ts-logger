@@ -1,5 +1,6 @@
 import * as Express from 'express';
 import { BasicLog, HttpRequestLog, MethodLog } from './classes';
+import { methodLogger } from './classes/decorators/method-logger';
 import { LogLevels, LogTypes } from './enums/logger';
 import { parseFilePath } from './utils/file';
 import logger from './winston';
@@ -19,4 +20,4 @@ export const methodLog = (level: string, filePath: string, message: string, meth
   logger[level](Object.assign({}, customLog.getLog(), { toString: customLog.toString }));
 };
 
-export { LogLevels, LogTypes, parseFilePath };
+export { LogLevels, LogTypes, parseFilePath, methodLogger };
