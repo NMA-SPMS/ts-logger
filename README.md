@@ -111,7 +111,7 @@ Output:
 ```
 type:[method] timestamp:[2019-02-19T16:53:16.088Z] env:[dev] level:[info] file:[/my/path/to/my-class.ts] method:[divide] <[message]>Method "divide" called<[message]>
 
-type:[method] timestamp:[2019-02-19T16:53:16.089Z] env:[dev] level:[error] file:[/my/path/to/my-class.ts] method:[divide] <[message]>Division by zero<[message]>
+type:[method] timestamp:[2019-02-19T16:53:16.089Z] env:[dev] level:[error] file:[/my/path/to/my-class.ts] method:[divide] <[message]>Error: Division by zero<[message]>
 ```
 
 You can also pass a custom message and a different LogLevel. Example:

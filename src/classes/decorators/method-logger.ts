@@ -16,7 +16,7 @@ export function methodLogger(filename: string, customMessage?: string, level: Lo
       try {
         result = originalMethod.apply(this, args);
       } catch (error) {
-        methodLog(LogLevels.error, filename, error.message, methodName);
+        methodLog(LogLevels.error, filename, error.toString(), methodName);
         throw error;
       }
       return result;
