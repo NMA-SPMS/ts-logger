@@ -70,19 +70,17 @@ httpReqLog(LogLevels.error, parseFilePath(__filename), requestMock);
 You can also implement using the methodLogger decorator,
 it will log regular methods and its thrown exceptions (if any).
 Just pass the \_\_filename global into the decorator.
-The default LogLevel assumed is [info].
-Example:
+The default LogLevel assumed is [info]. Example:
 
 ```typescript
 import { methodLogger } from '@spms-apps/ts-logger';
 
 class MyClass {
-  // generic case
   @methodLogger(__filename)
   public someFunction(message: string): string {
     return 'Message: ' + message;
   }
-  ...
+}
 ```
 
 Output:
@@ -91,20 +89,21 @@ Output:
 type:[method] timestamp:[2019-02-19T16:36:12.888Z] env:[dev] level:[info] file:[/my/path/to/my-class.ts] method:[someFunction] <[message]>Method "someFunction" called<[message]>
 ```
 
-In the case of thrown exceptions:
-Example:
+In the case of thrown exceptions. Example:
 
 ```typescript
-  ...
+import { methodLogger } from '@spms-apps/ts-logger';
+
+class MyClass {
   @methodLogger(__filename)
-    public divide(dividend: number, divisor: number): number {
-      if (divisor === 0) {
-        throw new Error('Division by zero');
-      } else {
-        return dividend/divisor;
-      }
+  public divide(dividend: number, divisor: number): number {
+    if (divisor === 0) {
+      throw new Error('Division by zero');
+    } else {
+      return dividend / divisor;
     }
-  ...
+  }
+}
 ```
 
 Output:
@@ -113,18 +112,17 @@ Output:
 type:[method] timestamp:[2019-02-19T16:53:16.088Z] env:[dev] level:[info] file:[/my/path/to/my-class.ts] method:[divide] <[message]>Method "divide" called<[message]>
 
 type:[method] timestamp:[2019-02-19T16:53:16.089Z] env:[dev] level:[error] file:[/my/path/to/my-class.ts] method:[divide] <[message]>Division by zero<[message]>
-
 ```
 
-You can also pass a custom message and a different LogLevel.
-Example:
+You can also pass a custom message and a different LogLevel. Example:
 
 ```typescript
-  ...
-  // optional params
+import { methodLogger } from '@spms-apps/ts-logger';
+
+class MyClass {
   @methodLogger(__filename, 'this is a custom message', LogLevels.debug)
   public sum(a: number, b: number): number {
-      return a + b;
+    return a + b;
   }
 }
 ```
