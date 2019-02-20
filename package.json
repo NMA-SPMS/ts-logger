@@ -49,8 +49,6 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "@types/get-caller-file": "^1.0.0",
-    "get-caller-file": "^2.0.1",
     "winston": "^3.1.0"
   },
   "commitplease": {
