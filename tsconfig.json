@@ -3,7 +3,8 @@
     "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
-    "strict": true
+    "strict": true,
+    "experimentalDecorators": true
   },
   "include": ["/**/**.*"],
   "exclude": ["node_modules", "lib"]
