@@ -1,40 +1,32 @@
-import { LogLevels } from '../../../src';
-import { methodLogger } from '../../../src/classes/decorators/method-logger';
+import { TestClass } from '../test-class';
 
-class MockClass {
-  @methodLogger(__filename)
-  public shouldLog(message: string) {
-    if (message === 'throwMe') {
-      throw new Error(message);
-    }
-    return message;
-  }
-
-  @methodLogger(__filename, 'customMessage')
-  public shouldLogCustom(message: string) {
-    if (message === 'throwMe') {
-      throw new Error(message);
-    }
-    return message;
-  }
-
-  @methodLogger(__filename, 'this is a custom message', LogLevels.debug)
-  public divide(dividend: number, divisor: number): number {
-    if (divisor === 0) {
-      throw new Error('Division by zero');
-    } else {
-      return dividend / divisor;
-    }
-  }
-}
-describe('MethodLogger decorator', () => {
-  test('Should throw and log the caught error', () => {
-    function shouldThrow() {
-      new MockClass().divide(3, 0);
-    }
-    expect(shouldThrow).toThrow();
+describe('Decorator', () => {
+  let testClass: TestClass;
+  beforeAll(() => {
+    testClass = new TestClass();
   });
-  test('Should log normally', () => {
-    expect(new MockClass().shouldLogCustom('logMe')).toBe('logMe');
+
+  it('Should log', () => {
+    return expect(testClass.logMe()).toEqual('logged!');
+  });
+
+  it('Should log with custom params', () => {
+    expect(testClass.logMeCustom()).toEqual('logged custom!');
+  });
+
+  it('Should log async', () => {
+    expect(testClass.logMeAsync()).resolves.toEqual('logged async!');
+  });
+
+  it('Should throw and log', () => {
+    expect(testClass.throwMe).toThrowError('error');
+  });
+
+  it('Should throw and log async', async () => {
+    try {
+      await testClass.throwAsync();
+    } catch (error) {
+      expect(error.message).toBe('error');
+    }
   });
 });
