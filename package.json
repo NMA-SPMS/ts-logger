@@ -1,11 +1,11 @@
 {
   "name": "@spms-apps/ts-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A logger built with winston for creating logstash logs out of the box",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest ./tests --coverage  --config ./jest.config.json",
+    "test": "jest ./tests --coverage --runInBand --config ./jest.config.json",
     "build": "rm -rf ./lib && npm run lint && npm run test && tsc -p ./tsconfig.dist.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
