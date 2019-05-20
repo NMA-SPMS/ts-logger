@@ -66,11 +66,30 @@ httpReqLog(LogLevels.error, parseFilePath(__filename), requestMock);
 // Output:
 // type:[httpReq] timestamp:[2019-01-25T23:29:38.181Z] env:[dev] level:[error] file:[index.js] method:[GET] version:[1.1] ip:[::1] hostname:[localhost]path:[/v2/pathologies]
 ```
+---
+## Decorator
+You can also implement using the methodLogger decorator, it will log regular methods and its thrown exceptions (if any).
 
-You can also implement using the methodLogger decorator,
-it will log regular methods and its thrown exceptions (if any).
-Just pass the \_\_filename global into the decorator.
-The default LogLevel assumed is [info]. Example:
+Decorators are new and experimental for now in Typescript.
+You should include the following entries to your `tsconfig.json` file, otherwise
+it will **not** be logged correctly (especially for async-await).
+
+```json
+{
+  "compilerOptions: {
+    [...]
+    "target": "es2017", /* for async-await support */
+    "experimentalDecorators": true, /* typescript's explicit configuration */
+    [...]
+  }
+}
+```
+
+
+Just pass Node's `__filename` constant into the decorator.
+The default LogLevel assumed is [info].
+
+Example:
 
 ```typescript
 import { methodLogger } from '@spms-apps/ts-logger';
