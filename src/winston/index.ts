@@ -58,7 +58,7 @@ if (process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'qual') {
 export const addTcpTransport = (tcpHost: string, tcpPort: number) => {
   const transport = new LogstashTransport({
     host: tcpHost,
-    port: tcpPort
+    port: tcpPort,
   });
   logger.add(transport);
 };

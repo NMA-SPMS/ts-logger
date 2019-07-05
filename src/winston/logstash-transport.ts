@@ -3,7 +3,6 @@ import * as transport from 'winston-transport';
 import ITransport from '../interfaces/transport';
 
 export default class LogstashTransport extends transport {
-
   private tcpOptions: ITransport;
 
   constructor(opts: any) {
