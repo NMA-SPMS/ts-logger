@@ -79,4 +79,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
 lib
