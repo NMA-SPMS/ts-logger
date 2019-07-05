@@ -47,12 +47,16 @@ Finally the Http Request Log has a couple of extra properties:
 | hostname    | string |        The Host field in the header        |
 | ip          | string |             The remote address             |
 
+By default, the logs are written in files, but it is also possible to send logs to a specific service, like logstash, defining a host and port to send each information. For that, it is necessary to call the method setLoggerTransport(host, port), giving the host and port number of the service.
+
 ## Usage
 
 To use this package you just need to import it and call the method that produces the log you want to get like so:
 
 ```typescript
-import { basicLog, methodLog, httpReqLog } from '@spms-apps/ts-logger';
+import { basicLog, methodLog, httpReqLog, setLoggerTransport } from '@spms-apps/ts-logger';
+
+setLoggerTransport(host, port);
 
 basicLog(LogLevels.debug, parseFilePath(__filename), 'User x has ben created');
 // Output:
