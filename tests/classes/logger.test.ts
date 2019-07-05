@@ -1,3 +1,4 @@
+
 import { BasicLog, HttpRequestLog, MethodLog } from '../../src/classes';
 import { LogLevels } from '../../src/enums/logger';
 import {
@@ -14,23 +15,23 @@ import {
 } from './mocks';
 
 describe('BasicLog class tests', () => {
-  let basicLog: BasicLog;
+  let basicLogg: BasicLog;
   beforeAll(() => {
-    basicLog = new BasicLog(LogLevels.info, 'src/controllers/new-api/pathology.js', 'Teste message', ['rel']);
+    basicLogg = new BasicLog(LogLevels.info, 'src/controllers/new-api/pathology.js', 'Teste message', ['rel']);
   });
 
   it('must return basic log', () => {
-    expect(basicLog.getLog()).toEqual(basicOutLog);
+    expect(basicLogg.getLog()).toEqual(basicOutLog);
   });
 
   it('must return basic log string', () => {
-    expect(basicLog.toString()).toBe(basicOutLogString);
+    expect(basicLogg.toString()).toBe(basicOutLogString);
   });
 
   it('must return method log string without tags', () => {
     // tslint:disable-next-line:no-string-literal
-    basicLog['tags'] = undefined;
-    expect(basicLog.toString()).toBe(basicOutLogStringWithoutTags);
+    basicLogg['tags'] = undefined;
+    expect(basicLogg.toString()).toBe(basicOutLogStringWithoutTags);
   });
 });
 
