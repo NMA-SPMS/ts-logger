@@ -1,5 +1,9 @@
 {
-  "collectCoverageFrom": ["src/classes/*.{ts}", "src/classes/decorators/*.{ts}", "src/utils/*.{ts}", "!**/index.ts"],
+  "collectCoverageFrom": [
+    "src/classes/*.{ts}",
+    "src/classes/decorators/*.{ts}",
+    "src/utils/*.{ts}","!**/index.ts"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 90,
