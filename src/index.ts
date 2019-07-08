@@ -3,7 +3,11 @@ import { BasicLog, HttpRequestLog, MethodLog } from './classes';
 import { methodLogger } from './classes/decorators/method-logger';
 import { LogLevels, LogTypes } from './enums/logger';
 import { parseFilePath } from './utils/file';
-import logger from './winston';
+import logger, { addTcpTransport } from './winston';
+
+export const setLoggerTransport = (host: string, port: number) => {
+  addTcpTransport(host, port);
+};
 
 export const httpReqLog = (level: string, filePath: string, req: Express.Request, tags?: string[]) => {
   const customLog: HttpRequestLog = new HttpRequestLog(level, filePath, req, tags);
