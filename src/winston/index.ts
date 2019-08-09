@@ -1,6 +1,8 @@
 import { Format, TransformableInfo } from 'logform';
 import { createLogger, format, transports } from 'winston';
 import { LogLevels } from '../enums/logger';
+import { ITLS } from '../interfaces';
+import LogstashTLSTransport from './logstash-tls-transport';
 import LogstashTransport from './logstash-transport';
 
 const { combine, timestamp, colorize, align } = format;
@@ -49,11 +51,14 @@ if (process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'qual') {
   );
 }
 
-/* transport.on('logged', (info) => {
-  // Verification that log was called on your transport
-  // tslint:disable-next-line:no-console
-  console.log(`Logging! It's happening!`, info);
-}); */
+export const addTcpTlsTransport = (tcpHost: string, tcpPort: number, certOptions: ITLS) => {
+  const transport = new LogstashTLSTransport({
+    host: tcpHost,
+    port: tcpPort,
+    options: certOptions
+  });
+  logger.add(transport);
+};
 
 export const addTcpTransport = (tcpHost: string, tcpPort: number) => {
   const transport = new LogstashTransport({

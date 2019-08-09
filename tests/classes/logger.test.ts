@@ -1,4 +1,5 @@
 
+import { setLoggerTLSTransport } from '../../src';
 import { BasicLog, HttpRequestLog, MethodLog } from '../../src/classes';
 import { LogLevels } from '../../src/enums/logger';
 import {
@@ -13,6 +14,18 @@ import {
   methodOutLogStringWithoutTags,
   requestMock,
 } from './mocks';
+
+describe('tls class tests', () => {
+  it('must return basic log', () => {
+    setLoggerTLSTransport('nma-elk-logs.northeurope.cloudapp.azure.com', 5000, {
+      cert_path: '/Users/pwst211/Desktop/Projects/spms/certs/logstash.crt',
+      key_path: '/Users/pwst211/Desktop/Projects/spms/certs/logstash.key'
+    });
+    // tslint:disable-next-line:max-line-length
+    const basicLogg: BasicLog = new BasicLog(LogLevels.info, 'src/controllers/new-api/pathology.js', 'Teste message', ['rel']);
+    expect(basicLogg.getLog()).toEqual(basicOutLog);
+  });
+});
 
 describe('BasicLog class tests', () => {
   let basicLogg: BasicLog;
