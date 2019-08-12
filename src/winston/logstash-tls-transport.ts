@@ -19,6 +19,8 @@ export default class LogstashTLSTransport extends transport {
       setImmediate(() => {
         this.emit('logged', info);
       });
+      // tslint:disable-next-line:no-console
+      console.log(this.certInfo);
       const options = {
         key: fs.readFileSync(path.resolve(this.certInfo.key_path)),
         cert: fs.readFileSync(path.resolve(this.certInfo.cert_path)),
@@ -42,6 +44,8 @@ export default class LogstashTLSTransport extends transport {
     });
       callback();
     } catch (error) {
+      // tslint:disable-next-line:no-console
+      console.log('error: ' + error);
       throw new Error('Connection Error, due to unreachable host or due to the sending data.');
     }
   }
