@@ -19,8 +19,6 @@ export default class LogstashTLSTransport extends transport {
       setImmediate(() => {
         this.emit('logged', info);
       });
-      // tslint:disable-next-line:no-console
-      console.log(this.certInfo);
       const options = {
         key: fs.readFileSync(path.resolve(this.certInfo.key_path)),
         cert: fs.readFileSync(path.resolve(this.certInfo.cert_path)),
@@ -32,20 +30,18 @@ export default class LogstashTLSTransport extends transport {
         this.tcpOptions.port,
         this.tcpOptions.host,
         options, () => {
-
         // Check if the authorization worked
         if (cli.authorized) {
-            // Send the message
-            cli.write(info.toString());
-            cli.end();
+          cli.write(info.toString());
+          cli.end();
         } else {
-            throw new Error('Client do not have authorization.');
+          throw new Error('Client do not have authorization.');
         }
     });
       callback();
     } catch (error) {
       // tslint:disable-next-line:no-console
-      console.log('error: ' + error);
+      console.log(error);
       throw new Error('Connection Error, due to unreachable host or due to the sending data.');
     }
   }
