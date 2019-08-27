@@ -2,8 +2,13 @@ import * as Express from 'express';
 import { BasicLog, HttpRequestLog, MethodLog } from './classes';
 import { methodLogger } from './classes/decorators/method-logger';
 import { LogLevels, LogTypes } from './enums/logger';
+import { ITLS } from './interfaces';
 import { parseFilePath } from './utils/file';
-import logger, { addTcpTransport } from './winston';
+import logger, { addTcpTlsTransport, addTcpTransport } from './winston';
+
+export const setLoggerTLSTransport = (host: string, port: number, options: ITLS) => {
+  addTcpTlsTransport(host, port, options);
+};
 
 export const setLoggerTransport = (host: string, port: number) => {
   addTcpTransport(host, port);

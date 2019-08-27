@@ -4,10 +4,11 @@ import ITransport from '../interfaces/transport';
 
 export default class LogstashTransport extends transport {
   private tcpOptions: ITransport;
-
+  private con: net.Socket;
   constructor(opts: any) {
     super(opts);
     this.tcpOptions = { host: opts.host, port: opts.port };
+    this.con = new net.Socket();
   }
 
   public log(info: any, callback: () => void) {
@@ -15,10 +16,9 @@ export default class LogstashTransport extends transport {
       setImmediate(() => {
         this.emit('logged', info);
       });
-      const con = new net.Socket();
-      con.connect(this.tcpOptions.port, this.tcpOptions.host, () => {
-        con.write(info.toString());
-        con.destroy();
+      this.con.connect(this.tcpOptions.port, this.tcpOptions.host, () => {
+        this.con.write(info.toString());
+        this.con.destroy();
       });
       callback();
     } catch (error) {
