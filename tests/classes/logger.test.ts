@@ -14,6 +14,14 @@ import {
   requestMock,
 } from './mocks';
 
+describe('tls class tests', () => {
+  it('must return basic log', () => {
+    // tslint:disable-next-line:max-line-length
+    const basicLogg: BasicLog = new BasicLog(LogLevels.info, 'src/controllers/new-api/pathology.js', 'Teste message', ['rel']);
+    expect(basicLogg.getLog()).toEqual(basicOutLog);
+  });
+});
+
 describe('BasicLog class tests', () => {
   let basicLogg: BasicLog;
   beforeAll(() => {
