@@ -47,16 +47,14 @@ Finally the Http Request Log has a couple of extra properties:
 | hostname    | string |        The Host field in the header        |
 | ip          | string |             The remote address             |
 
-By default, the logs are written in files, but it is also possible to send logs to a specific service, like logstash, defining a host and port to send each information. For that, it is necessary to call the method setLoggerTransport(host, port), giving the host and port number of the service.
+By default, the logs are written in files, but it is also possible to send logs to a specific service, like logstash, via TCP, defining a host and port or via TLS, defining a host, port, and the certs, to send each information. For that, it is necessary to call the method setLoggerTransport(host, port), or setLoggerTLSTransport(host, port, options) giving the host and port number of the service and the options (cert_path, key_path, ca_path).
 
 ## Usage
 
 To use this package you just need to import it and call the method that produces the log you want to get like so:
 
 ```typescript
-import { basicLog, methodLog, httpReqLog, setLoggerTransport } from '@spms-apps/ts-logger';
-
-setLoggerTransport(host, port);
+import { basicLog, methodLog, httpReqLog } from '@spms-apps/ts-logger';
 
 basicLog(LogLevels.debug, parseFilePath(__filename), 'User x has ben created');
 // Output:
@@ -70,6 +68,21 @@ httpReqLog(LogLevels.error, parseFilePath(__filename), requestMock);
 // Output:
 // type:[httpReq] timestamp:[2019-01-25T23:29:38.181Z] env:[dev] level:[error] file:[index.js] method:[GET] version:[1.1] ip:[::1] hostname:[localhost]path:[/v2/pathologies]
 ```
+
+## Send log to a server
+
+If you want to send the logs to a server, via tcp or tls, there is two methods available, before calling the previous logs.
+
+```typescript
+import { setLoggerTLSTransport, setLoggerTransport } from '@spms-apps/ts-logger';
+
+// Send log via tcp, giving the host and port of the server
+setLoggerTransport(host, port);
+
+// Send log via tls, giving the host, port, and the path of the certs (cert_path, key_path, ca_path)
+setLoggerTLSTransport(host, port, options)
+```
+
 ---
 ## Decorator
 You can also implement using the methodLogger decorator, it will log regular methods and its thrown exceptions (if any).

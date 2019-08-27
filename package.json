@@ -34,7 +34,6 @@
     "@types/express": "^4.17.0",
     "@types/jest": "^23.3.14",
     "@types/node": "^10.14.13",
-    "@types/winston": "^2.4.4",
     "commitizen": "^4.0.3",
     "commitplease": "^3.2.0",
     "coveralls": "^3.0.4",
