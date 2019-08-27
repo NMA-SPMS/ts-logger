@@ -55,7 +55,7 @@ export const addTcpTlsTransport = (tcpHost: string, tcpPort: number, certOptions
   const transport = new LogstashTLSTransport({
     host: tcpHost,
     port: tcpPort,
-    options: certOptions
+    options: certOptions,
   });
   logger.add(transport);
 };

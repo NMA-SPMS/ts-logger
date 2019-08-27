@@ -26,10 +26,7 @@ export default class LogstashTLSTransport extends transport {
         requestCert: true,
         rejectUnauthorized: true,
       };
-      const cli = tls.connect(
-        this.tcpOptions.port,
-        this.tcpOptions.host,
-        options, () => {
+      const cli = tls.connect(this.tcpOptions.port, this.tcpOptions.host, options, () => {
         // Check if the authorization worked
         if (cli.authorized) {
           cli.write(info.toString());
@@ -37,7 +34,7 @@ export default class LogstashTLSTransport extends transport {
         } else {
           throw new Error('Client do not have authorization.');
         }
-    });
+      });
       callback();
     } catch (error) {
       // tslint:disable-next-line:no-console
